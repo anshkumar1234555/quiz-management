@@ -1,168 +1,70 @@
 # Quiz Management System
 
-A backend REST API for managing online quizzes, questions, options, users, attempts, answers, and results.
-
-## Features
-
-- User registration and login
-- JWT authentication
-- ADMIN and STUDENT roles
-- Role-based authorization
-- Quiz management
-- Question management
-- Option management
-- Quiz attempts
-- Answer submission
-- Automatic score calculation
-- Result generation
-- PostgreSQL database
-- REST APIs
+A backend REST API for managing quizzes, questions, options, student attempts, answers, authentication, and results.
 
 ## Tech Stack
 
 - Java
 - Spring Boot
 - Spring Security
-- JWT
-- PostgreSQL
+- JWT Authentication
 - Spring Data JPA
 - Hibernate
+- PostgreSQL
 - Maven
 - Lombok
 - Postman
-- Git & GitHub
 
-## Authentication
-
-The application uses JWT authentication.
-
-After login, use the returned token in protected requests:
-
-Authorization: Bearer <JWT_TOKEN>
-
-## Main APIs
+## Features
 
 ### Authentication
-
-POST /api/auth/register
-
-POST /api/auth/login
-
-### Quizzes
-
-POST /api/quizzes
-
-GET /api/quizzes
-
-GET /api/quizzes/{id}
-
-GET /api/quizzes/{id}/details
-
-PUT /api/quizzes/{id}
-
-DELETE /api/quizzes/{id}
-
-### Questions
-
-POST /api/questions
-
-GET /api/questions
-
-GET /api/questions/{id}
-
-PUT /api/questions/{id}
-
-DELETE /api/questions/{id}
-
-### Options
-
-POST /api/options
-
-GET /api/options
-
-GET /api/options/{id}
-
-PUT /api/options/{id}
-
-DELETE /api/options/{id}
-
-### Attempts
-
-POST /api/attempts
-
-GET /api/attempts
-
-GET /api/attempts/{id}
-
-PUT /api/attempts/{id}/submit
-
-### Answers
-
-POST /api/answers
-
-GET /api/answers
-
-GET /api/answers/{id}
-
-### Results
-
-GET /api/results/{attemptId}
-
-## Roles
-
-### ADMIN
-
-Admin can create, update and delete quizzes, questions and options.
-
-### STUDENT
-
-Students can view quizzes, create attempts, submit answers and view results.
-
-## Database
-
-PostgreSQL is used as the database.
-
-Main entities:
-
-- User
-- Category
-- Quiz
-- Question
-- Option
-- Attempt
-- Answer
-
-## Running the Project
-
-Configure PostgreSQL and your local application.properties file.
-
-Then run:
-
-mvn spring-boot:run
-
-The application runs on:
-
-http://localhost:8080
-
-## Security
-
-The project uses:
-
+- User registration
+- User login
 - JWT authentication
-- BCrypt password hashing
-- Stateless Spring Security
 - Role-based authorization
+- ADMIN and STUDENT roles
+- BCrypt password encryption
 
-Sensitive configuration such as database passwords and JWT secrets is excluded from Git.
+### Admin Features
+- Create quizzes
+- Update quizzes
+- Delete quizzes
+- Create categories
+- Create questions
+- Create multiple-choice options
+- Mark correct options
+- View quiz details
 
-## Future Improvements
+### Student Features
+- Login using JWT
+- Start quiz attempts
+- Submit answers
+- Submit attempts
+- Automatic score calculation
+- Percentage calculation
+- View final results
 
-- React frontend
-- Admin dashboard
-- Student dashboard
-- Swagger/OpenAPI documentation
-- Pagination
-- Search and filtering
-- Docker
-- Cloud deployment
-- Automated tests
+## API Flow
+
+```text
+Register/Login
+      ↓
+JWT Authentication
+      ↓
+ADMIN creates Category
+      ↓
+ADMIN creates Quiz
+      ↓
+ADMIN creates Question
+      ↓
+ADMIN creates Options
+      ↓
+STUDENT starts Attempt
+      ↓
+STUDENT submits Answer
+      ↓
+STUDENT submits Attempt
+      ↓
+System calculates Score
+      ↓
+Student views Result
